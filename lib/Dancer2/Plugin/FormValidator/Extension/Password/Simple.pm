@@ -18,7 +18,7 @@ sub validate {
     my ($self, $field, $input) = @_;
 
     if (exists $input->{$field}) {
-        return $input->{$field} =~ /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+        return $input->{$field} =~ /^(?=.*[A-Za-z])(?=.*\d)(?=.*[\@\$!%*#?&])[A-Za-z\d\@\$!%*#?&]{8,}$/;
     }
 
     return 1;
