@@ -8,8 +8,8 @@ with 'Dancer2::Plugin::FormValidator::Role::Validator';
 
 sub message {
     return {
-        en => '%s must be at least 8 characters long and contain at least one letter, a number, and a special character',
-        ru => '%s должен иметь длину не менее 8 символов и состоять минимум из одной буквы, числа и специального символа',
+        en => '%s must be minimum 8 characters long and contain at least one letter, a number, and a special character',
+        ru => '%s должен иметь длину не менее 8 символов и состоять хотя бы из одной буквы, числа и специального символа',
         de => '%s muss mindestens 8 Zeichen lang sein und mindestens einen Buchstaben, eine Zahl und ein Sonderzeichen enthalten',
     };
 }
