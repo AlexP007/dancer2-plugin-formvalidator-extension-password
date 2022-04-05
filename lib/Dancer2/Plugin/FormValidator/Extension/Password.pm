@@ -7,6 +7,7 @@ with 'Dancer2::Plugin::FormValidator::Role::Extension';
 sub validators {
     return {
         password_simple => 'Dancer2::Plugin::FormValidator::Extension::Password::Simple',
+        password_robust => 'Dancer2::Plugin::FormValidator::Extension::Password::Robust',
     };
 }
 

@@ -11,7 +11,7 @@ package Validator {
     sub profile {
         return {
             email    => [qw(required email)],
-            password => [qw(required password_simple)],
+            password => [qw(required password_robust)],
         };
     };
 }
