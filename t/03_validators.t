@@ -1,10 +1,11 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::More tests => 10;
+use Test::More tests => 15;
 
 use Dancer2::Plugin::FormValidator::Extension::Password::Simple;
 use Dancer2::Plugin::FormValidator::Extension::Password::Robust;
+use Dancer2::Plugin::FormValidator::Extension::Password::Hard;
 
 my $validator;
 
@@ -73,7 +74,42 @@ isnt(
 );
 
 is(
-    $validator->validate('password', {password => 'fg12@Afl'}),
+    $validator->validate('password', {password => 'fg12@afl'}),
     1,
     'TEST 2: Dancer2::Plugin::FormValidator::Extension::Password::Robust valid',
+);
+
+# TEST 3.
+## Dancer2::Plugin::FormValidator::Extension::Password::Hard.
+
+$validator = Dancer2::Plugin::FormValidator::Extension::Password::Hard->new;
+
+is(
+    ref $validator->message,
+    'HASH',
+    'TEST 3: Dancer2::Plugin::FormValidator::Extension::Password::Hard messages hash'
+);
+
+is(
+    $validator->stop_on_fail,
+    0,
+    'TEST 3: Dancer2::Plugin::FormValidator::Extension::Password::Hard stop_on_fail',
+);
+
+isnt(
+    $validator->validate('password', {password => 'fg12@afl'}),
+    1,
+    'TEST 3: Dancer2::Plugin::FormValidator::Extension::Password::Hard not valid',
+);
+
+isnt(
+    $validator->validate('password', {password => 'fg12adsflaf'}),
+    1,
+    'TEST 3: Dancer2::Plugin::FormValidator::Extension::Password::Hard not valid',
+);
+
+is(
+    $validator->validate('password', {password => 'fg12@Afl'}),
+    1,
+    'TEST 3: Dancer2::Plugin::FormValidator::Extension::Password::Hard valid',
 );
